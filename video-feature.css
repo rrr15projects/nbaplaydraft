@@ -1,0 +1,231 @@
+/* Video and image feature added to the basketball draft site */
+
+.video-manager-card {
+  position: relative;
+}
+
+.video-upload-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.video-file-picker {
+  width: 100%;
+  border: 3px dashed var(--line, #dbe3ee);
+  border-radius: 18px;
+  padding: 16px;
+  background: var(--soft, #f6f8fb);
+  font-size: 17px;
+}
+
+.video-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 800;
+  margin: 4px 0;
+}
+
+.video-option input {
+  width: 22px;
+  height: 22px;
+}
+
+.video-help {
+  color: var(--muted, #64748b);
+  line-height: 1.45;
+  margin: 8px 0;
+}
+
+.video-status {
+  margin-top: 12px;
+}
+
+.video-library {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.video-library-empty {
+  border: 3px dashed var(--line, #dbe3ee);
+  border-radius: 18px;
+  padding: 22px;
+  text-align: center;
+  color: var(--muted, #64748b);
+  font-weight: 800;
+}
+
+.video-library-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  border: 3px solid var(--line, #dbe3ee);
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: #fff;
+}
+
+.video-library-row.is-playing {
+  border-color: var(--green, #16a34a);
+  background: #f0fdf4;
+}
+
+.video-library-name {
+  font-size: 19px;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.video-library-meta {
+  margin-top: 4px;
+  color: var(--muted, #64748b);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.video-row-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.video-small-button {
+  border: 0;
+  border-radius: 12px;
+  padding: 11px 13px;
+  font-weight: 900;
+  background: var(--blue, #2563eb);
+  color: #fff;
+}
+
+.video-small-button.light {
+  color: var(--ink, #111827);
+  background: var(--soft, #f6f8fb);
+  border: 2px solid var(--line, #dbe3ee);
+}
+
+.video-small-button.red {
+  background: var(--red, #dc2626);
+}
+
+.video-stop-button {
+  margin-top: 14px;
+}
+
+/* Preview modal */
+.video-preview-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, .88);
+}
+
+.video-preview-box {
+  width: min(1000px, 100%);
+  max-height: 92vh;
+  display: grid;
+  gap: 12px;
+}
+
+.video-preview-box video,
+.video-preview-box img {
+  display: block;
+  width: 100%;
+  max-height: 80vh;
+  border-radius: 16px;
+  background: #000;
+  object-fit: contain;
+}
+
+.video-preview-close {
+  justify-self: end;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 900;
+  font-size: 17px;
+}
+
+/* Big-screen overlay */
+.draft-video-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  background: #000;
+  overflow: hidden;
+}
+
+.draft-video-overlay video,
+.draft-video-overlay img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  background: #000;
+}
+
+.draft-video-controls {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: min(92vw, 760px);
+  pointer-events: none;
+}
+
+.draft-video-sound,
+.draft-video-play {
+  pointer-events: auto;
+  border: 2px solid rgba(255,255,255,.65);
+  border-radius: 999px;
+  padding: 13px 20px;
+  background: rgba(0,0,0,.76);
+  color: #fff;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 900;
+  backdrop-filter: blur(8px);
+}
+
+.draft-video-title {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90vw;
+  padding: 9px 16px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(0,0,0,.62);
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 900;
+  text-align: center;
+  opacity: .8;
+}
+
+@media (max-width: 700px) {
+  .video-library-row {
+    grid-template-columns: 1fr;
+  }
+
+  .video-row-actions {
+    justify-content: stretch;
+  }
+
+  .video-small-button {
+    flex: 1 1 120px;
+  }
+}

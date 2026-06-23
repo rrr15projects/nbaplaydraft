@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team Draft Room</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section id="loginScreen" class="login-screen">
+    <div class="login-box">
+      <div class="login-emoji">🏀</div>
+      <h1>Team Room</h1>
+      <p>Pick your team. Enter your password.</p>
+      <select id="teamSelect" class="big-select"></select>
+      <input id="teamPassword" class="big-input" type="password" inputmode="text" placeholder="Team password" style="margin-top:12px">
+      <button id="teamLoginButton" class="big-button">Enter Team Room</button>
+      <div id="loginMessage" class="message error hidden"></div>
+    </div>
+  </section>
+
+  <main id="teamApp" class="page hidden">
+    <div class="topbar">
+      <h1 id="teamTitle">🏀 Team</h1>
+      <button id="teamLogout" class="small-link">Log Out</button>
+    </div>
+    <div id="message" class="message hidden"></div>
+
+    <div class="clock-card">
+      <div id="teamPickLabel" class="clock-label">WAITING</div>
+      <div id="teamClockName" class="clock-team">Please wait</div>
+      <div id="teamTimer" class="clock-time">02:00</div>
+      <div id="teamStatus" class="status-pill">WAITING</div>
+    </div>
+
+    <section id="pickArea" class="card hidden">
+      <h2 class="center">👇 Tap Your Player</h2>
+      <div id="playerButtons" class="player-grid"></div>
+      <button id="confirmPick" class="big-button green" disabled>✅ YES, PICK THIS PLAYER</button>
+    </section>
+
+    <section class="card">
+      <h2>Already Picked</h2>
+      <div id="pickedList" class="simple-list"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="common.js"></script>
+  <script src="team.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commissioner</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="video-feature.css">
+</head>
+<body>
+  <section id="loginScreen" class="login-screen">
+    <div class="login-box">
+      <div class="login-emoji">🏀</div>
+      <h1>Commissioner</h1>
+      <p>Enter your password.</p>
+      <input id="commissionerLogin" class="big-input" type="password" placeholder="Commissioner password">
+      <button id="commissionerLoginButton" class="big-button">Open Draft</button>
+      <p id="firstTimeNote">First time? Use <strong>commissioner</strong></p>
+      <div id="loginMessage" class="message error hidden"></div>
+    </div>
+  </section>
+
+  <main id="commissionerApp" class="page hidden">
+    <div class="topbar">
+      <h1>🏀 Commissioner</h1>
+      <div class="small-links">
+        <a class="small-link" href="passwords.html">🔐 Passwords</a>
+        <a class="small-link" href="team.html">👥 Team</a>
+        <a class="small-link" href="display.html">📺 Display</a>
+      </div>
+    </div>
+
+    <div id="message" class="message hidden"></div>
+
+    <div class="steps">
+      <button class="step-dot" data-go-step="1">1️⃣ Players</button>
+      <button class="step-dot" data-go-step="2">2️⃣ Teams</button>
+      <button class="step-dot" data-go-step="3">3️⃣ Order</button>
+      <button class="step-dot" data-go-step="4">4️⃣ Draft</button>
+    </div>
+
+    <section id="step1" class="card wizard-step">
+      <h2>1️⃣ Add Players</h2>
+      <p>Type one player. Press Add. Do it again.</p>
+      <div class="add-row">
+        <input id="playerName" class="big-input" type="text" placeholder="Player name">
+        <button id="addPlayer" class="big-button green">➕ Add</button>
+      </div>
+      <div id="playerList" class="simple-list"></div>
+      <div class="next-box">
+        <button id="playersNext" class="big-button">Next: Add Teams ➡️</button>
+      </div>
+    </section>
+
+    <section id="step2" class="card wizard-step hidden">
+      <h2>2️⃣ Add Teams</h2>
+      <p>Type one team. A 4-number password is made for it.</p>
+      <div class="add-row">
+        <input id="teamName" class="big-input" type="text" placeholder="Team name">
+        <button id="addTeam" class="big-button green">➕ Add</button>
+      </div>
+      <div id="newTeamCode" class="message hidden"></div>
+      <div id="teamList" class="simple-list"></div>
+      <div class="next-box button-row">
+        <button class="big-button light" data-go-step="1">⬅️ Back</button>
+        <button id="teamsNext" class="big-button">Next: Pick Order ➡️</button>
+      </div>
+    </section>
+
+    <section id="step3" class="card wizard-step hidden">
+      <h2>3️⃣ Pick the Order</h2>
+      <p>Use the arrows. Top team picks first.</p>
+      <div id="orderList" class="simple-list"></div>
+      <div class="center">
+        <p><strong>How many rounds?</strong></p>
+        <div class="counter">
+          <button id="roundMinus">−</button>
+          <strong id="roundNumber">1</strong>
+          <button id="roundPlus">+</button>
+        </div>
+      </div>
+      <button id="makeOrder" class="big-button green">✅ Make Draft Order</button>
+      <div class="next-box button-row">
+        <button class="big-button light" data-go-step="2">⬅️ Back</button>
+        <button id="orderNext" class="big-button">Go to Draft ➡️</button>
+      </div>
+    </section>
+
+    <section id="step4" class="wizard-step hidden">
+      <div class="clock-card">
+        <div id="pickLabel" class="clock-label">WAITING</div>
+        <div id="currentTeam" class="clock-team">Make the order first</div>
+        <div id="timer" class="clock-time">02:00</div>
+        <div id="statusPill" class="status-pill">NOT STARTED</div>
+      </div>
+
+      <div class="card center">
+        <button id="startPick" class="big-button green">▶️ START THIS TEAM</button>
+        <div class="button-row">
+          <button id="pausePick" class="big-button yellow hidden">⏸️ Pause</button>
+          <button id="resetTimer" class="big-button light hidden">🔄 Restart Clock</button>
+        </div>
+      </div>
+
+      <section class="card">
+        <h2>📝 Pick For The Team</h2>
+        <p>Only use this if the commissioner is making the pick.</p>
+        <select id="adminPlayerSelect" class="big-select"></select>
+        <button id="adminMakePick" class="big-button">✅ Pick This Player</button>
+      </section>
+
+      <section class="card">
+        <h2>📺 Change The Big Screen</h2>
+        <p>Type anything. It will cover the draft display until you clear it.</p>
+        <textarea id="displayMessage" class="big-textarea" placeholder="Example: Snack break! 🍕"></textarea>
+        <div class="button-row">
+          <button id="showMessage" class="big-button green">📣 Show This</button>
+          <button id="clearMessage" class="big-button light">✖️ Clear Message</button>
+        </div>
+      </section>
+
+      <!-- The video and image controls are inserted here automatically by video-feature.js. -->
+
+      <section class="card">
+        <h2>Draft Picks</h2>
+        <div id="draftBoard"></div>
+        <button id="undoPick" class="big-button red">↩️ Undo Last Pick</button>
+      </section>
+
+      <div class="button-row">
+        <button class="big-button light" data-go-step="3">⬅️ Edit Setup</button>
+        <a class="big-button light" style="text-decoration:none;text-align:center" href="passwords.html">🔐 Passwords</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="common.js"></script>
+  <script src="commissioner.js"></script>
+  <script src="video-feature.js"></script>
+</body>
+</html>

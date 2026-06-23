@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Draft Display</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="video-feature.css">
+</head>
+<body class="display-body">
+  <section id="loginScreen" class="login-screen">
+    <div class="login-box">
+      <div class="login-emoji">📺</div>
+      <h1>Big Screen</h1>
+      <p>Enter the display password.</p>
+      <input id="displayLogin" class="big-input" type="password" placeholder="Display password">
+      <button id="displayLoginButton" class="big-button">Show Draft</button>
+      <p id="firstTimeNote">First time? Use <strong>display</strong></p>
+      <div id="loginMessage" class="message error hidden"></div>
+    </div>
+  </section>
+
+  <main id="displayApp" class="display-wrap hidden">
+    <div class="display-inner">
+      <div id="displayEmoji" class="display-emoji">🏀</div>
+      <div id="displayKicker" class="display-kicker">Basketball Draft</div>
+      <div id="displayMain" class="display-main">Waiting To Start</div>
+      <div id="displaySub" class="display-sub">The commissioner will begin soon.</div>
+      <div id="displayTime" class="display-time hidden">02:00</div>
+      <div id="displayFooter" class="display-footer"></div>
+    </div>
+  </main>
+
+  <!-- The full-screen video/image overlay is inserted automatically by video-feature.js. -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="common.js"></script>
+  <script src="display.js"></script>
+  <script src="video-feature.js"></script>
+</body>
+</html>
